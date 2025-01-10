@@ -1,28 +1,33 @@
 package com.gcdev.projects;
+import com.gcdev.projects.servicios.converter;
 
-import java.io.IOException;
 import java.util.Scanner;
 
+
 public class AppLauncher {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        /*
-        sdsdsdsdsd
-        */
-        String apikey = "8d417e5c4b366fd6ccd0a0ab";
-        String direcc = "https://v6.exchangerate-api.com/v6/"+apikey+"/latest/";
+    public static void main(String[] args) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
+        converter service = new converter();
 
-        String MonOri = "" ;
-        String MonDes = "" ;
+        String monedaOrigen, monedaDestino ;
+        double monto, resultado;
 
+        System.out.println("Ingresar la moneda Origen: ");
+        monedaOrigen = scanner.nextLine().toUpperCase();
 
-        System.out.println("Ingresar la moneda Origen");
-        MonOri = scanner.nextLine().toUpperCase();
+        System.out.println("Ingresar la moneda Destino: ");
+        monedaDestino = scanner.nextLine().toUpperCase();
 
-        String direccion = direcc + MonOri;
+        System.out.println("Ingresar el monto: ");
+        monto = scanner.nextDouble();
 
+        resultado = service.convertir(monedaOrigen,monedaDestino,monto);
 
-
+        System.out.println("------------------------------");
+        System.out.println("Monto:      " + monto + " " + monedaOrigen);
+        System.out.println("Tasa:       " + monto/resultado);
+        System.out.println("Resultado:  " + resultado + " " + monedaDestino);
+        //System.out.println(monto/resultado);
     }
 }
